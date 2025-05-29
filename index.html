@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>효율적으로 ai를 쓸 수 있는 방법</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #F4F7F9;
+            color: #263238;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        .section-title {
+            font-size: 2.25rem; /* 36px */
+            line-height: 2.5rem; /* 40px */
+            font-weight: 800; /* Extrabold */
+            color: #2A62B6;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .card-title {
+            font-size: 1.5rem; /* 24px */
+            line-height: 1.75rem; /* 28px */
+            font-weight: 700; /* Bold */
+            color: #2A62B6;
+            margin-bottom: 15px;
+        }
+        .chart-container {
+            width: 100%;
+            max-width: 768px;
+            margin: 20px auto;
+            height: 288px; /* 기본 높이 */
+            position: relative;
+        }
+        .chart-container canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+        .key-insight-title {
+            font-weight: 600;
+            margin-top: 10px;
+            color: #4ECDC4;
+        }
+        .interview-card {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .interview-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #A9A9A9; /* 임시 배경색 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #FFFFFF;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .interview-details {
+            flex-grow: 1;
+        }
+        .interview-keyword {
+            display: inline-block;
+            background-color: #E0F2FE;
+            color: #2A62B6;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        .conclusion-title {
+            font-size: 1.25rem; /* 20px */
+            line-height: 1.75rem; /* 28px */
+            font-weight: 700; /* Bold */
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #263238;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #A9A9A9;
+            color: #A9A9A9;
+            font-size: 0.875rem; /* 14px */
+        }
+        /* 한국어 레이블 줄 바꿈 스타일 */
+        .chartjs-tooltip-body li {
+            white-space: normal !important;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="mb-10">
+            <h1 class="section-title text-3xl md:text-4xl lg:text-5xl">효율적으로 ai를 쓸 수 있는 방법</h1>
+            <p class="text-center text-lg text-gray-600">미림마이스터고 소프트웨어과 1학년 3반 공동 조사 보고서</p>
+            <p class="text-center text-sm text-gray-500">작성일: 2025년 5월 28일</p>
+            <div class="mt-4 text-center">
+                <span class="mr-2"><strong>팀원:</strong></span>
+                <span>노윤서 (1305), 박준서 (1306), 이예지 (1311), 정예준 (1316)</span>
+            </div>
+        </header>
+
+        <section class="mb-10">
+            <h2 class="card-title text-xl font-bold mb-4">1. 조사 동기와 목적</h2>
+            <div class="card">
+                <h3 class="font-semibold mb-2">가. 조사 동기</h3>
+                <p>우리 반 학생들이 AI를 더 잘 활용하도록 돕고 싶어 조사를 계획하였다.</p>
+                <h3 class="font-semibold mt-4 mb-2">나. 조사 목적</h3>
+                <p>학생들의 AI 활용 현황을 파악하고 효율적인 사용법을 제시하여, 학생들이 학습에 AI를 효과적으로 활용하도록 돕고자 하여 조사를 하였다.</p>
+            </div>
+        </section>
+
+        <section class="mb-10">
+            <h2 class="card-title text-xl font-bold mb-4">2. 조사 계획</h2>
+            <div class="card">
+                <h3 class="font-semibold mb-2">가. 조사 기간</h3>
+                <p>2025년 05월 15일</p>
+                <h3 class="font-semibold mt-4 mb-2">나. 조사 대상</h3>
+                <p>미림마이스터고 소프트웨어과 1학년 3반 학생 17명</p>
+                <h3 class="font-semibold mt-4 mb-2">다. 조사 방법</h3>
+                <p>설문조사, 인터뷰</p>
+            </div>
+        </section>
+
+        <section class="mb-10">
+            <h2 class="card-title text-xl font-bold mb-4">3. 조사 결과</h2>
+
+            <div class="card mb-6">
+                <h3 class="font-semibold text-lg mb-3">가. 설문 조사 결과</h3>
+
+                <div class="chart-container">
+                    <canvas id="surveyChart1"></canvas>
+                </div>
+                <p class="mt-2 text-center text-gray-600"><strong>설문 1:</strong> 귀하는 인공지능(AI)을 효과적으로 사용하고 있다고 생각하십니까?</p>
+                <div class="mt-4">
+                    <h4 class="key-insight-title">Q1 핵심 통찰</h4>
+                    <ol class="list-decimal pl-5">
+                        <li>AI를 '그렇다'라고 효과적으로 사용한다고 응답한 학생이 41.2%(7명)로 가장 많았다. 이는 17명 중 7명이 AI를 효과적으로 사용한다고 인식하고 있어, AI 활용에 대한 긍정적인 인식이 높음을 알 수 있다.</li>
+                        <li>'매우 그렇지 않다'와 '그렇지 않다'는 응답이 모두 0명(0%)으로 나타났다. 이는 AI를 효과적으로 사용하지 못한다고 생각하는 학생은 전혀 없어, AI 활용에 대한 부정적인 인식이 매우 낮음을 시사한다.</li>
+                        <li>'보통이다'와 '매우 그렇다'는 응답이 각각 29.4%(5명)로 동일하게 나타났다. 이는 AI 사용 효과에 대한 인식이 보통이거나 매우 긍정적인 학생들이 유사한 비율로 분포하고 있음을 보여준다.</li>
+                    </ol>
+                    <p class="mt-2"><strong>주목할 만한 내용:</strong> 응답자 17명 중 12명(4점 이상 응답자)이 ‘인공지능(AI)을 효과적으로 사용하고 있다’고 생각하고 있으며, 이는 전체의 약 70.6%에 해당한다. 부정적인 응답(1점, 2점)은 전혀 없다는 점이 매우 인상적이다.</p>
+                </div>
+            </div>
+
+            <div class="card mb-6">
+                <div class="chart-container">
+                    <canvas id="surveyChart2"></canvas>
+                </div>
+                <p class="mt-2 text-center text-gray-600"><strong>설문 2:</strong> AI 사용이 학습 및 과제 결과물의 '질'을 얼마나 향상시켜 준다고 생각하십니까?</p>
+                <div class="mt-4">
+                    <h4 class="key-insight-title">Q2 핵심 통찰</h4>
+                    <ol class="list-decimal pl-5">
+                        <li>AI 사용이 학습 및 과제 결과물의 '질'을 '향상시켜준다'고 응답한 학생이 47.1%(8명)로 가장 많았다. 절반에 가까운 학생들이 AI가 학습 및 과제 질 향상에 기여한다고 인식하고 있어, 긍정적인 효과를 기대한다.</li>
+                        <li>'매우 향상시켜준다'는 응답이 23.5%(4명)로 '향상시켜준다'보다 적게 나타났다. AI가 질을 향상시키는 것은 인정하지만, '매우 크게' 향상시킨다고는 생각하지 않는 학생들이 더 많다.</li>
+                        <li>'전혀 향상시켜주지 않는다'와 '향상시켜주지 않는다'는 응답이 모두 0명(0%)이었다. AI가 학습 및 과제 질에 부정적인 영향을 미친다고 생각하는 학생은 전혀 없어, AI의 유용성을 전반적으로 인정한다.</li>
+                    </ol>
+                    <p class="mt-2"><strong>주목할 만한 내용:</strong> 17명 중 12명(4점 또는 5점 응답자)이 AI가 과제 결과물의 질을 향상시켜 준다고 응답했으며, 이는 전체의 70.6%에 해당한다. 이는 학생들이 AI의 도움을 실질적인 도구로 사용하고 있음을 보여준다.</p>
+                </div>
+            </div>
+
+            <div class="card mb-6">
+                <div class="chart-container">
+                    <canvas id="surveyChart3"></canvas>
+                </div>
+                <p class="mt-2 text-center text-gray-600"><strong>설문 3:</strong> 귀하께서 AI 도구를 사용하시는 목적을 달성하는 데 있어, AI가 얼마나 효율적이라고 느끼십니까?</p>
+                <div class="mt-4">
+                    <h4 class="key-insight-title">Q3 핵심 통찰</h4>
+                    <ol class="list-decimal pl-5">
+                        <li>AI 사용 목적 달성에 있어 AI가 '약간 향상된다'와 '매우 크게 향상된다'는 응답이 각각 41.2%(7명)로 가장 높았다. AI 사용이 효율성 향상에 크게 기여한다고 생각하는 학생들이 대다수로, AI의 효율성에 대한 인식이 매우 높다.</li>
+                        <li>'전혀 향상되지 않는다'는 응답이 0명(0%)으로 나타난 반면, '약간 향상되지 않는다'는 응답이 1명(5.9%) 있었다. AI 사용이 효율성을 저하시킨다고 생각하는 학생은 거의 없으며, 대부분이 AI의 효율성에 대해 긍정적인 인식을 가지고 있다.</li>
+                        <li>'보통이다'는 응답이 11.8%(2명)로, '약간 향상되지 않는다'는 응답보다 많았다. AI의 효율성이 크게 느껴지지 않는다고 응답한 학생들도 소수 존재하지만, 대부분은 AI를 통해 효율성을 경험하고 있다.</li>
+                    </ol>
+                    <p class="mt-2"><strong>주목할 만한 내용:</strong> '약간 향상된다'와 '매우 크게 향상된다'에 응답한 비율이 각각 41.2%로 동일하며, 이 둘을 합치면 전체의 82.4%에 달한다. 이는 대부분의 응답자들이 AI 도구가 목적 달성에 실질적인 도움을 준다고 인식하고 있다는 강력한 신호이다.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="font-semibold text-lg mb-3">나. 인터뷰 결과</h3>
+
+                <div class="mb-4 interview-card">
+                    <div class="interview-image">노</div>
+                    <div class="interview-details">
+                        <h4 class="font-semibold">인터뷰 인물: 노가우</h4>
+                        <p><strong>주요 키워드:</strong> <span class="interview-keyword">도움</span> <span class="interview-keyword">대신</span> <span class="interview-keyword">편함</span> <span class="interview-keyword">과제</span></p>
+                        <p><strong>주목할 만한 내용:</strong> 생성형 AI가 자신의 생각을 표현해줄 때 대신 해주는 게 편하고 검색하고 자료를 찾을 때 AI한테 물어보면 바로 검색해서 내용을 정리해서 보내주어서 편하다. 주로 AI는 과제할 때 사용한다.</p>
+                        <p class="text-sm text-gray-500"><a href="https://clovanote.naver.com/s/ECdz8fknTzSTQxTrJU87qgS" target="_blank" rel="noopener noreferrer">클로바노트 링크 1</a></p>
+                        <p class="text-sm text-gray-500"><a href="https://clovanote.naver.com/s/Kmjgst9ZReb9gacKQXp7dRS" target="_blank" rel="noopener noreferrer">클로바노트 링크 2</a></p>
+                    </div>
+                </div>
+
+                <div class="interview-card">
+                    <div class="interview-image">윤</div>
+                    <div class="interview-details">
+                        <h4 class="font-semibold">인터뷰 인물: 윤기진</h4>
+                        <p><strong>주요 키워드:</strong> <span class="interview-keyword">알려줘</span> <span class="interview-keyword">모르는 정보</span> <span class="interview-keyword">자료</span></p>
+                        <p><strong>주목할 만한 내용:</strong> 생성형 AI는 모르는 것을 알게 해주고, 모르는 정보를 찾을 때 사용한다. 그리고 주로 프롬프트를 입력할 때 (알고 싶은 정보)를 알려줘 라는 형식으로 입력한다. 그리고 이 학생은 AI를 쓰는 것 보다 자신이 직접 하는 것이 더 낫다고 생각하여 AI를 잘 사용하지 않는 학생이다.</p>
+                        <p class="text-sm text-gray-500"><a href="https://clovanote.naver.com/s/hDi4jQWgqHmsfjsPFLnu9nS" target="_blank" rel="noopener noreferrer">클로바노트 링크 1</a></p>
+                        <p class="text-sm text-gray-500"><a href="https://clovanote.naver.com/s/LDQPirymwHiSw9S6ibfh8aS" target="_blank" rel="noopener noreferrer">클로바노트 링크 2</a></p>
+                        <p class="text-sm text-gray-500"><a href="https://clovanote.naver.com/s/kxp2innCfduXWjHAWvis74S" target="_blank" rel="noopener noreferrer">클로바노트 링크 3</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-10">
+            <h2 class="card-title text-xl font-bold mb-4">4. 결론</h2>
+            <div class="card">
+                <h3 class="conclusion-title">가. 조사 결과 종합 및 주요 발견점</h3>
+                <p>조사 결과, 학생들은 생성형 AI를 학습에 효과적으로 활용하고 있었다. 특히 정보 탐색, 과제 수행 시 효율성과 질 향상에 AI가 실질적인 도움을 준다고 다수의 학생이 응답했다. 인터뷰에서는 AI가 복잡한 표현을 대신하거나 자료를 빠르게 정리해주는 점이 편리하다는 의견이 많았다. 이는 AI가 학생들의 학습 부담을 줄이고 성과를 높이는 데 기여하고 있음을 보여준다.</p>
+
+                <h3 class="conclusion-title mt-6">나. 조사를 통해 새롭게 인식한 점</h3>
+                <p>본 조사를 통해 AI가 단순 정보 제공을 넘어, 학생들의 생각 정리와 표현을 돕는 학습 파트너가 될 수 있음을 새롭게 인식했다. 또한, 명확한 프롬프트 입력이 AI 활용 효과를 결정짓는 중요한 요소이며, AI가 제공하는 정보에 대한 비판적 검토 자세가 필수적임을 확인했다.</p>
+
+                <h3 class="conclusion-title mt-6">다. 제언 및 우리의 다짐</h3>
+                <p>이러한 점을 바탕으로, 우리는 AI를 단순 도구가 아닌 학습과 사고를 돕는 동반자로 인식한다. 앞으로 AI를 더 효과적으로 활용하기 위해 다음을 노력할 것이다.</p>
+                <ol class="list-decimal pl-5 mt-2">
+                    <li><strong>명확한 프롬프트 작성 능력 향상:</strong> 원하는 결과를 얻기 위해 구체적이고 전략적인 프롬프트 사용법을 익히고 공유한다.</li>
+                    <li><strong>AI 정보의 비판적 수용 태도 강화:</strong> AI가 제공하는 정보의 사실 여부를 항상 확인하고, 균형 잡힌 시각으로 정보를 활용한다.</li>
+                    <li><strong>AI를 활용한 창의적 학습 활동 확대:</strong> AI를 아이디어 발상, 문제 해결 등 창의적이고 심층적인 학습에 적극 활용하여 사고력을 확장한다.</li>
+                </ol>
+                <p class="mt-4">이러한 노력을 통해 AI를 주체적으로 활용하여 미래 사회에 필요한 역량을 갖춘 인재로 성장할 것을 다짐한다.</p>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>&copy; 2025 미림마이스터고 소프트웨어과 1학년 3반</p>
+        </footer>
+    </div>
+
+    <script>
+        // Chart.js global options for responsiveness and aspect ratio
+        const chartGlobalOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.parsed !== null) {
+                                label += context.parsed + '%';
+                            }
+                            return label;
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        callback: function(value) {
+                            return value + '%';
+                        }
+                    }
+                },
+                x: {
+                    ticks: {
+                        autoSkip: false,
+                        maxRotation: 0,
+                        minRotation: 0,
+                        callback: function(value, index, values) {
+                            const label = this.getLabelForValue(value);
+                            // Wrap labels if they are too long (e.g., > 16 characters for Korean)
+                            const maxLen = 16;
+                            if (label.length > maxLen) {
+                                let wrappedLabel = [];
+                                let currentLine = '';
+                                const words = label.split(' ');
+                                for (let i = 0; i < words.length; i++) {
+                                    if ((currentLine + words[i]).length > maxLen && currentLine.length > 0) {
+                                        wrappedLabel.push(currentLine.trim());
+                                        currentLine = words[i] + ' ';
+                                    } else {
+                                        currentLine += words[i] + ' ';
+                                    }
+                                }
+                                wrappedLabel.push(currentLine.trim());
+                                return wrappedLabel;
+                            }
+                            return label;
+                        }
+                    }
+                }
+            }
+        };
+
+        // Data for Survey Chart 1
+        const data1 = {
+            labels: ['매우 그렇지 않다', '그렇지 않다', '보통이다', '그렇다', '매우 그렇다'],
+            datasets: [{
+                label: '응답 비율',
+                data: [0, 0, 29.4, 41.2, 29.4],
+                backgroundColor: [
+                    '#A9A9A9', // Accent Grey
+                    '#A9A9A9',
+                    '#E0F2FE', // Supporting Light Blue
+                    '#2A62B6', // Primary Blue
+                    '#4ECDC4'  // Secondary Teal
+                ],
+                borderColor: [
+                    '#A9A9A9',
+                    '#A9A9A9',
+                    '#E0F2FE',
+                    '#2A62B6',
+                    '#4ECDC4'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // Data for Survey Chart 2
+        const data2 = {
+            labels: ['전혀 향상시켜주지 않는다', '향상시켜주지 않는다', '보통이다', '향상시켜준다', '매우 향상시켜준다'],
+            datasets: [{
+                label: '응답 비율',
+                data: [0, 0, 29.4, 47.1, 23.5],
+                backgroundColor: [
+                    '#A9A9A9',
+                    '#A9A9A9',
+                    '#E0F2FE',
+                    '#2A62B6',
+                    '#4ECDC4'
+                ],
+                borderColor: [
+                    '#A9A9A9',
+                    '#A9A9A9',
+                    '#E0F2FE',
+                    '#2A62B6',
+                    '#4ECDC4'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // Data for Survey Chart 3
+        const data3 = {
+            labels: ['전혀 향상되지 않는다', '약간 향상되지 않는다', '보통이다', '약간 향상된다', '매우 크게 향상된다'],
+            datasets: [{
+                label: '응답 비율',
+                data: [0, 5.9, 11.8, 41.2, 41.2],
+                backgroundColor: [
+                    '#A9A9A9',
+                    '#A9A9A9',
+                    '#E0F2FE',
+                    '#2A62B6',
+                    '#4ECDC4'
+                ],
+                borderColor: [
+                    '#A9A9A9',
+                    '#A9A9A9',
+                    '#E0F2FE',
+                    '#2A62B6',
+                    '#4ECDC4'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // Get canvas contexts
+        const ctx1 = document.getElementById('surveyChart1').getContext('2d');
+        const ctx2 = document.getElementById('surveyChart2').getContext('2d');
+        const ctx3 = document.getElementById('surveyChart3').getContext('2d');
+
+        // Create charts
+        new Chart(ctx1, {
+            type: 'bar',
+            data: data1,
+            options: chartGlobalOptions
+        });
+
+        new Chart(ctx2, {
+            type: 'bar',
+            data: data2,
+            options: chartGlobalOptions
+        });
+
+        new Chart(ctx3, {
+            type: 'bar',
+            data: data3,
+            options: chartGlobalOptions
+        });
+    </script>
+    </body>
+</html>
